@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { motion } from 'framer-motion';
-
 import {
     IoLogoGoogle,
     IoLogoFacebook,
@@ -10,21 +9,20 @@ import {
     IoLogoGithub,
 } from 'react-icons/io5';
 
-interface FormInput {
+import Button from './Components/Button';
+
+type FormInput = {
     name: string;
     email: string;
     password: string;
-}
+};
 
 const Form = () => {
     const [handleButton, setHandleButton] = useState(true);
 
-    const changeSide = () => {
-        setHandleButton(!handleButton);
-    };
-
     const { register, handleSubmit } = useForm<FormInput>();
     const onSubmit: SubmitHandler<FormInput> = (data) => console.log(data);
+
     return (
         <div className='bg-black min-w-[70%] min-h-[80%] rounded-3xl flex items-center text-center '>
             <motion.div
@@ -33,7 +31,7 @@ const Form = () => {
                     x: handleButton ? 0 : '100%',
                 }}
                 transition={{ duration: 0.1, ease: 'easeIn' }}
-                className={`absolute min-w-[35%] min-h-[80%] bg-green-500 flex flex-col justify-center gap-8 ${
+                className={`rounded-3xl absolute min-w-[35%] min-h-[80%] bg-green-500 flex flex-col justify-center gap-8 ${
                     handleButton
                         ? 'rounded-r-[100px] duration-[0.8s]'
                         : 'rounded-l-[100px] duration-[0.8s]'
@@ -48,12 +46,14 @@ const Form = () => {
                         : 'Create an account to get started!'}
                 </p>
                 <div>
-                    <button
-                        className=' px-16 py-2 rounded-xl border-[1px] hover:bg-black font-bold text-xl'
-                        onClick={changeSide}
+                    <Button
+                        className={
+                            'border-[1px] hover:bg-black duration-[0.3s] ease-out'
+                        }
+                        onClick={() => setHandleButton(!handleButton)}
                     >
                         Sign {handleButton ? 'In' : 'Up'}
-                    </button>
+                    </Button>
                 </div>
             </motion.div>
 
@@ -112,12 +112,9 @@ const Form = () => {
                         </a>
                     </div>
 
-                    <button
-                        className=' mt-8 px-16 py-2 rounded-xl bg-green-600 font-bold text-xl'
-                        type='submit'
-                    >
+                    <Button className={'bg-green-600 '} type={'submit'}>
                         Sign In
-                    </button>
+                    </Button>
                 </form>
             </div>
             <div className='w-[50%]'>
@@ -175,12 +172,9 @@ const Form = () => {
                         </li>
                     </ul>
 
-                    <button
-                        className=' mt-8 px-16 py-2 rounded-xl bg-green-600 font-bold text-xl'
-                        type='submit'
-                    >
+                    <Button className={'bg-green-600'} type={'submit'}>
                         Sign Up
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>
