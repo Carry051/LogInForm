@@ -1,5 +1,9 @@
-const App = () => {
-    return <div className='text-center'>App</div>;
-};
+import Form from './Form';
 
-export default App;
+export default function App() {
+    return (
+        <div className=' flex h-screen justify-center items-center rounded-3xl text-white relative'>
+            <Form />
+        </div>
+    );
+}
