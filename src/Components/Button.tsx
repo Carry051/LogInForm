@@ -12,12 +12,9 @@ const Button: FC<buttonProps> = ({ type, children, className, onClick }) => {
     return (
         <>
             <motion.button
-                whileHover={{
-                    scale: 1.2,
-                }}
                 whileTap={{ scale: 0.7 }}
                 transition={{ duration: 0.3 }}
-                className={` ${className} mt-8 px-16 py-2 rounded-xl  font-bold text-xl`}
+                className={` ${className} mt-8 px-16 py-2 rounded-xl font-bold text-xl`}
                 type={type}
                 onClick={onClick}
             >
