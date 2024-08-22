@@ -1,9 +1,18 @@
-export const inputsFormData = [
+import { FormValues } from '../Components/InputsField';
+
+type inputsFormDataProps = {
+    id: string;
+    type: string;
+    placeholder: string;
+    name: keyof FormValues;
+};
+
+export const inputsFormData: inputsFormDataProps[] = [
     {
         id: '1',
-        type: 'name',
+        type: 'text',
         placeholder: 'Name',
-        name: 'name',
+        name: 'userName',
     },
     {
         id: '2',

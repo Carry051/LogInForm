@@ -10,7 +10,7 @@ const FormWrapper = () => {
     const [handleButton, setHandleButton] = useState(true);
 
     return (
-        <div className='wrapper'>
+        <div className='wrapper relative'>
             <motion.div
                 initial={{ x: 0 }}
                 animate={{
@@ -23,7 +23,7 @@ const FormWrapper = () => {
                         : 'rounded-l-[100px] duration-[0.8s]'
                 }`}
             >
-                <h2 className='text-5xl font-extrabold'>
+                <h2 className='text-4xl font-extrabold'>
                     {handleButton ? 'Already have an account?' : 'New here?'}
                 </h2>
                 <p className='text-2xl'>

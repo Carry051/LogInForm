@@ -1,31 +1,64 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 import Button from '../Components/Button';
 import InputsField, { FormValues } from '../Components/InputsField';
 
 import { inputsFormData } from '../data/inputsFormData';
 import { socialLogoData } from '../data/socialLogoData';
+import { TiDeleteOutline } from 'react-icons/ti';
+
+const schema = yup
+    .object({
+        email: yup.string().required(),
+        password: yup.string().required(),
+        userName: yup.string().required(),
+    })
+    .required();
 
 const RegisterForm = () => {
-    const { register, handleSubmit, reset } = useForm<FormValues>();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<FormValues>({
+        resolver: yupResolver(schema),
+    });
 
     const onSubmit2: SubmitHandler<FormValues> = (data) => {
-        alert(`Sign up successful! Welcome to ${data.name}.`);
+        alert(`Sign up successful! Welcome to ${data.userName}.`);
         reset();
     };
     return (
         <div className='w-[50%]'>
             <form onSubmit={handleSubmit(onSubmit2)}>
                 <h1 className=' text-5xl mb-10'>Sign Up</h1>
-                <div className='flex flex-col gap-4 mb-6 '>
+                <div className='flex flex-col'>
                     {inputsFormData.map((data) => (
                         <div key={data.id}>
-                            <InputsField
-                                type={data.type}
-                                placeholder={data.placeholder}
-                                name={data.name as keyof FormValues}
-                                register={register}
-                            />
+                            <div className='flex items-center justify-center mb-5 gap-3'>
+                                <InputsField
+                                    type={data.type}
+                                    placeholder={data.placeholder}
+                                    name={data.name}
+                                    register={register}
+                                    className={
+                                        errors[data.name] &&
+                                        'focus:border-red-600 hover:border-red-400'
+                                    }
+                                />
+
+                                <div>
+                                    <p className=' w-1'>
+                                        {errors[data.name] && (
+                                            <TiDeleteOutline color='red' />
+                                        )}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>

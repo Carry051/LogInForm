@@ -1,18 +1,20 @@
 import { FC } from 'react';
 
-import { UseFormRegister } from 'react-hook-form';
+import { Resolver, UseFormRegister } from 'react-hook-form';
 
 export type FormValues = {
-    name?: string;
+    userName: string;
     email: string;
     password: string;
 };
 
-type InputsFieldProps = {
+export type InputsFieldProps = {
+    resolver?: Resolver<FormValues>;
+    register: UseFormRegister<FormValues>;
     type: string;
     placeholder: string;
     name: keyof FormValues;
-    register: UseFormRegister<FormValues>;
+    className?: string;
 };
 
 const InputsField: FC<InputsFieldProps> = ({
@@ -20,14 +22,14 @@ const InputsField: FC<InputsFieldProps> = ({
     placeholder,
     name,
     register,
+    className,
 }) => {
     return (
         <input
-            required
             placeholder={placeholder}
             type={type}
             {...register(name)}
-            className='inputsField'
+            className={`inputsField  ${className}`}
         />
     );
 };

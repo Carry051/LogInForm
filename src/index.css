@@ -7,7 +7,7 @@
         @apply bg-transparent border-2 w-[80%] rounded-lg py-2 pl-2 hover:border-green-400 transition-all duration-[0.5s] outline-none focus:border-green-600;
     }
     .switchSide {
-        @apply rounded-3xl absolute min-w-[35%] min-h-[80%] bg-green-500 flex flex-col justify-center gap-8;
+        @apply rounded-3xl absolute min-w-[50%] min-h-[100%] bg-green-500 flex flex-col justify-center gap-5;
     }
     .wrapper {
         @apply bg-black min-w-[70%] min-h-[80%] rounded-3xl flex items-center text-center;
